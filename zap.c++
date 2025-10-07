@@ -21,7 +21,7 @@ float konversiNilai(char nilai) {
     }
 }
 
-// Fungsi utama
+
 int main() {
     menuUtama();
     return 0;
