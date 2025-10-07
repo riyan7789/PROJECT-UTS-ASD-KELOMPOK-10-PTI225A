@@ -9,7 +9,7 @@ void kalkulatorIPK();
 void kalkulatorWaktu();
 void kalkulatorBiaya();
 
-// Fungsi konversi nilai huruf ke angka
+
 float konversiNilai(char nilai) {
     switch (toupper(nilai)) {
         case 'A': return 4.0;
