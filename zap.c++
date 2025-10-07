@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-// Deklarasi fungsi
+
 void menuUtama();
 void kalkulatorIPK();
 void kalkulatorWaktu();
