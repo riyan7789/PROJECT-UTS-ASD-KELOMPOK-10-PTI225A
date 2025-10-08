@@ -1,15 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip> // 🔹 Tambahkan ini untuk format angka
 using namespace std;
 
-
+// Deklarasi fungsi
 void menuUtama();
 void kalkulatorIPK();
 void kalkulatorWaktu();
 void kalkulatorBiaya();
 
-
+// Fungsi konversi nilai huruf ke angka
 float konversiNilai(char nilai) {
     switch (toupper(nilai)) {
         case 'A': return 4.0;
@@ -21,7 +22,7 @@ float konversiNilai(char nilai) {
     }
 }
 
-
+// Fungsi utama
 int main() {
     menuUtama();
     return 0;
@@ -76,7 +77,7 @@ void kalkulatorIPK() {
 
     float ipk = totalBobot / totalSKS;
     cout << "\nTotal SKS: " << totalSKS;
-    cout << "\nIPK Anda: " << ipk;
+    cout << "\nIPK Anda: " << fixed << setprecision(2) << ipk;
 
     if (ipk >= 3.5) cout << " (Cumlaude)";
     else if (ipk >= 3.0) cout << " (Baik)";
@@ -118,7 +119,7 @@ void kalkulatorWaktu() {
 // Modul Kalkulator Biaya Kuliah & Hidup
 void kalkulatorBiaya() {
     cout << "\n=== KALKULATOR BIAYA KULIAH & HIDUP ===\n";
-    float kuliah, kos, makan, transport, buku, lain, dana;
+    double kuliah, kos, makan, transport, buku, lain, dana;
     cout << "Masukkan biaya kuliah per semester: Rp ";
     cin >> kuliah;
     cout << "Masukkan biaya kos per bulan: Rp ";
@@ -132,9 +133,10 @@ void kalkulatorBiaya() {
     cout << "Masukkan pengeluaran lain per bulan (opsional, 0 jika tidak ada): Rp ";
     cin >> lain;
 
-    float totalBulanan = kos + makan + transport + buku + lain;
-    float totalSemester = kuliah + (totalBulanan * 6);
+    double totalBulanan = kos + makan + transport + buku + lain;
+    double totalSemester = kuliah + (totalBulanan * 6);
 
+    cout << fixed << setprecision(0); // 🔹 Tampilkan angka tanpa notasi ilmiah
     cout << "\nTotal biaya bulanan: Rp " << totalBulanan;
     cout << "\nTotal biaya per semester: Rp " << totalSemester;
 
@@ -142,7 +144,7 @@ void kalkulatorBiaya() {
     cin >> dana;
 
     if (dana > 0) {
-        float sisa = dana - totalSemester;
+        double sisa = dana - totalSemester;
         if (sisa > 0)
             cout << "\nDana mencukupi. Sisa uang: Rp " << sisa;
         else
