@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <iomanip> // 🔹 Tambahkan ini untuk format angka
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 // Deklarasi fungsi
@@ -9,6 +10,8 @@ void menuUtama();
 void kalkulatorIPK();
 void kalkulatorWaktu();
 void kalkulatorBiaya();
+float konversiNilai(char nilai);
+string formatRupiah(double nilai);
 
 // Fungsi konversi nilai huruf ke angka
 float konversiNilai(char nilai) {
@@ -20,6 +23,24 @@ float konversiNilai(char nilai) {
         case 'E': return 0.0;
         default: return 0.0;
     }
+}
+
+// Fungsi format angka jadi Rupiah (misal 1500000 → 1.500.000)
+string formatRupiah(double nilai) {
+    stringstream ss;
+    ss << fixed << setprecision(0) << nilai;
+    string num = ss.str();
+    string hasil = "";
+    int hitung = 0;
+    for (int i = num.length() - 1; i >= 0; i--) {
+        hasil.insert(0, 1, num[i]);
+        hitung++;
+        if (hitung == 3 && i > 0) {
+            hasil.insert(0, 1, '.');
+            hitung = 0;
+        }
+    }
+    return hasil;
 }
 
 // Fungsi utama
@@ -85,6 +106,12 @@ void kalkulatorIPK() {
     else cout << " (Kurang)";
 
     cout << "\n=========================\n";
+
+    char kembali;
+    cout << "\nKembali ke menu utama? (y/n): ";
+    cin >> kembali;
+    if (tolower(kembali) == 'y') menuUtama();
+    else cout << "\nTerima kasih!\n";
 }
 
 // Modul Kalkulator Waktu Belajar & Produktivitas
@@ -114,12 +141,19 @@ void kalkulatorWaktu() {
         cout << "\nRekomendasi: Masih ada waktu luang, bisa digunakan untuk belajar atau istirahat.";
 
     cout << "\n=========================================\n";
+
+    char kembali;
+    cout << "\nKembali ke menu utama? (y/n): ";
+    cin >> kembali;
+    if (tolower(kembali) == 'y') menuUtama();
+    else cout << "\nTerima kasih!\n";
 }
 
 // Modul Kalkulator Biaya Kuliah & Hidup
 void kalkulatorBiaya() {
     cout << "\n=== KALKULATOR BIAYA KULIAH & HIDUP ===\n";
     double kuliah, kos, makan, transport, buku, lain, dana;
+
     cout << "Masukkan biaya kuliah per semester: Rp ";
     cin >> kuliah;
     cout << "Masukkan biaya kos per bulan: Rp ";
@@ -130,26 +164,35 @@ void kalkulatorBiaya() {
     cin >> transport;
     cout << "Masukkan biaya buku per bulan: Rp ";
     cin >> buku;
-    cout << "Masukkan pengeluaran lain per bulan (opsional, 0 jika tidak ada): Rp ";
+    cout << "Masukkan pengeluaran lain per bulan (0 jika tidak ada): Rp ";
     cin >> lain;
 
     double totalBulanan = kos + makan + transport + buku + lain;
-    double totalSemester = kuliah + (totalBulanan * 6);
+    double totalSemester = kuliah + (totalBulanan * 6); // 6 bulan per semester
+    double totalTahunan = totalSemester * 2; // 2 semester dalam setahun
 
-    cout << fixed << setprecision(0); // 🔹 Tampilkan angka tanpa notasi ilmiah
-    cout << "\nTotal biaya bulanan: Rp " << totalBulanan;
-    cout << "\nTotal biaya per semester: Rp " << totalSemester;
+    cout << "\n---------------------------------------------";
+    cout << "\nTotal biaya bulanan       : Rp " << formatRupiah(totalBulanan);
+    cout << "\nTotal biaya per semester  : Rp " << formatRupiah(totalSemester);
+    cout << "\nTotal biaya per tahun     : Rp " << formatRupiah(totalTahunan);
+    cout << "\n---------------------------------------------";
 
-    cout << "\nMasukkan total dana tersedia per semester (opsional): Rp ";
+    cout << "\nMasukkan total dana tersedia per semester: Rp ";
     cin >> dana;
 
     if (dana > 0) {
         double sisa = dana - totalSemester;
         if (sisa > 0)
-            cout << "\nDana mencukupi. Sisa uang: Rp " << sisa;
+            cout << "\n Dana mencukupi. Sisa uang: Rp " << formatRupiah(sisa);
         else
-            cout << "\nDana kurang sebesar: Rp " << sisa * -1;
+            cout << "\n Dana kurang sebesar: Rp " << formatRupiah(-sisa);
     }
 
     cout << "\n============================================\n";
+
+    char kembali;
+    cout << "\nKembali ke menu utama? (y/n): ";
+    cin >> kembali;
+    if (tolower(kembali) == 'y') menuUtama();
+    else cout << "\nTerima kasih!\n";
 }
