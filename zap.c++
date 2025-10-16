@@ -66,10 +66,9 @@ int main() {
     cout << "   SELAMAT DATANG DI APLIKASI MAHASISWA\n";
     cout << "===========================================\n" << RESET;
 
-    // Tambahan: tekan Enter untuk melanjutkan
     cout << "\nTekan ENTER untuk melanjutkan...";
-    cin.ignore(); // membersihkan buffer input
-    cin.get();    // menunggu Enter ditekan
+    cin.ignore();
+    cin.get();
 
 #ifdef _WIN32
     system("cls");
@@ -91,19 +90,19 @@ void menuUtama() {
         cout << "1. Kalkulator IPK\n";
         cout << "2. Kalkulator Waktu Belajar & Produktivitas\n";
         cout << "3. Kalkulator Biaya Kuliah & Hidup\n";
-        cout << "4. Keluar\n";
+        cout << "0. Keluar\n";
         cout << "-------------------------------------------\n";
-        cout << "Pilih menu (1-4): ";
+        cout << "Pilih menu (0-3): ";
         cin >> pilihan;
 
         switch (pilihan) {
             case 1: kalkulatorIPK(); break;
             case 2: kalkulatorWaktu(); break;
             case 3: kalkulatorBiaya(); break;
-            case 4: cout << GREEN << "\nTerima kasih telah menggunakan aplikasi!\n" << RESET; break;
+            case 0: cout << GREEN << "\nTerima kasih telah menggunakan aplikasi!\n" << RESET; break;
             default: cout << RED << "\nPilihan tidak valid. Coba lagi.\n" << RESET;
         }
-    } while (pilihan != 4);
+    } while (pilihan != 0);
 }
 
 // Modul Kalkulator IPK
@@ -166,18 +165,18 @@ void kalkulatorIPK() {
 
     cout << "========================================\n";
 
+    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator IPK!" << RESET << endl;
+
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama : ";
     cin >> kembali;
-    if (tolower(kembali) == '0') {
+    if (kembali == '0') {
 #ifdef _WIN32
         system("cls");
 #else
         system("clear");
 #endif
         menuUtama();
-    } else {
-        cout << GREEN << "\nTerima kasih telah menggunakan kalkulator IPK!\n" << RESET;
     }
 }
 
@@ -207,17 +206,19 @@ void kalkulatorWaktu() {
     else
         cout << YELLOW << "\nRekomendasi: Masih ada waktu luang, bisa digunakan untuk belajar atau istirahat.\n" << RESET;
 
+    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator Waktu!" << RESET << endl;
+
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama: ";
     cin >> kembali;
-    if (tolower(kembali) == '0') {
+    if (kembali == '0') {
 #ifdef _WIN32
         system("cls");
 #else
         system("clear");
 #endif
         menuUtama();
-    } else cout << GREEN << "\nTerima kasih!\n" << RESET;
+    }
 }
 
 // Modul Kalkulator Biaya
@@ -259,15 +260,17 @@ void kalkulatorBiaya() {
             cout << RED << "\nDana kurang sebesar: Rp " << formatRupiah(-sisa) << endl << RESET;
     }
 
+    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator Biaya!" << RESET << endl;
+
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama: ";
     cin >> kembali;
-    if (tolower(kembali) == '0') {
+    if (kembali == '0') {
 #ifdef _WIN32
         system("cls");
 #else
         system("clear");
 #endif
         menuUtama();
-    } else cout << GREEN << "\nTerima kasih!\n" << RESET;
+    }
 }
