@@ -62,9 +62,9 @@ string formatRupiah(double nilai) {
 
 // Fungsi utama
 int main() {
-    cout << CYAN << "\n===========================================\n";
-    cout << "   SELAMAT DATANG DI APLIKASI MAHASISWA\n";
-    cout << "===========================================\n" << RESET;
+    cout << CYAN << "\n=====================================================\n";
+    cout << "   SELAMAT DATANG DI APLIKASI KALKULATOR MAHASISWA\n";
+    cout << "=====================================================\n" << RESET;
 
     cout << "\nTekan ENTER untuk melanjutkan...";
     cin.ignore();
@@ -84,9 +84,9 @@ int main() {
 void menuUtama() {
     int pilihan;
     do {
-        cout << BLUE << "\n===========================================\n";
-        cout << "     APLIKASI MAHASISWA SERBA GUNA\n";
-        cout << "===========================================\n" << RESET;
+        cout << BLUE << "\n==================================================\n";
+        cout << "     APLIKASI KALKULATOR MAHASISWA SERBA GUNA\n";
+        cout << "==================================================\n" << RESET;
         cout << "1. Kalkulator IPK\n";
         cout << "2. Kalkulator Waktu Belajar & Produktivitas\n";
         cout << "3. Kalkulator Biaya Kuliah & Hidup\n";
@@ -99,7 +99,7 @@ void menuUtama() {
             case 1: kalkulatorIPK(); break;
             case 2: kalkulatorWaktu(); break;
             case 3: kalkulatorBiaya(); break;
-            case 0: cout << GREEN << "\nTerima kasih telah menggunakan aplikasi!\n" << RESET; break;
+            case 0: cout << GREEN << "\nTerima Kasih Telah Menggunakan aplikasi!\n" << RESET; break;
             default: cout << RED << "\nPilihan tidak valid. Coba lagi.\n" << RESET;
         }
     } while (pilihan != 0);
@@ -165,7 +165,7 @@ void kalkulatorIPK() {
 
     cout << "========================================\n";
 
-    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator IPK!" << RESET << endl;
+    cout << GREEN << "\nTerima Kasih Telah Menggunakan Kalkulator IPK!" << RESET << endl;
 
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama : ";
@@ -206,7 +206,7 @@ void kalkulatorWaktu() {
     else
         cout << YELLOW << "\nRekomendasi: Masih ada waktu luang, bisa digunakan untuk belajar atau istirahat.\n" << RESET;
 
-    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator Waktu!" << RESET << endl;
+    cout << GREEN << "\nTerima Kasih Telah Menggunakan Kalkulator Waktu!" << RESET << endl;
 
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama: ";
@@ -260,7 +260,7 @@ void kalkulatorBiaya() {
             cout << RED << "\nDana kurang sebesar: Rp " << formatRupiah(-sisa) << endl << RESET;
     }
 
-    cout << GREEN << "\nTerima kasih telah menggunakan Kalkulator Biaya!" << RESET << endl;
+    cout << GREEN << "\nTerima Kasih Telah Menggunakan Kalkulator Biaya!" << RESET << endl;
 
     char kembali;
     cout << "\nKlik 0 untuk kembali ke menu utama: ";
